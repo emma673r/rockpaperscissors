@@ -29,8 +29,8 @@ function titleScreen() {
   win.classList = "hidden";
   lose.classList = "hidden";
 
-//   compChoice = Math.floor(Math.random() * 3);
-//   console.log(`compChoice is : ${compChoice}`);
+  compChoice = Math.floor(Math.random() * 3);
+  console.log(`compChoice is : ${compChoice}`);
 
   // event listener rock btn click startGame
   rock.addEventListener("click", shakeHandsRock);
@@ -43,8 +43,8 @@ function titleScreen() {
 function shakeHandsRock() {
   console.log(`shakeHandsRock`);
 
-    compChoice = Math.floor(Math.random() * 3);
-    console.log(`compChoice is : ${compChoice}`);
+  //   compChoice = Math.floor(Math.random() * 3);
+  //   console.log(`compChoice is : ${compChoice}`);
 
   player.classList.add("shake");
   computer.classList.add("shake");
@@ -54,8 +54,8 @@ function shakeHandsRock() {
 function shakeHandsPaper() {
   console.log(`shakeHandsPaper`);
 
-    compChoice = Math.floor(Math.random() * 3);
-    console.log(`compChoice is : ${compChoice}`);
+  //   compChoice = Math.floor(Math.random() * 3);
+  //   console.log(`compChoice is : ${compChoice}`);
 
   player.classList.add("shake");
   computer.classList.add("shake");
@@ -65,8 +65,8 @@ function shakeHandsPaper() {
 function shakeHandsScissors() {
   console.log(`shakeHandsScissors`);
 
-    compChoice = Math.floor(Math.random() * 3);
-  console.log(`compChoice is : ${compChoice}`);
+  //   compChoice = Math.floor(Math.random() * 3);
+  //   console.log(`compChoice is : ${compChoice}`);
 
   player.classList.add("shake");
   computer.classList.add("shake");
@@ -74,6 +74,8 @@ function shakeHandsScissors() {
 }
 
 function rockClicked() {
+  player.removeEventListener("animationend", rockClicked);
+
   console.log(`rockClicked`);
   userChoice = 0;
 
@@ -112,6 +114,7 @@ function rockClicked() {
 }
 
 function paperClicked() {
+  player.removeEventListener("animationend", paperClicked);
   console.log(`paperClicked`);
   userChoice = 1;
 
@@ -151,6 +154,7 @@ function paperClicked() {
 }
 
 function scissorsClicked() {
+  player.removeEventListener("animationend", scissorsClicked);
   console.log(`scissorsClicked`);
   userChoice = 2;
 
@@ -196,9 +200,9 @@ function tieScreen() {
   win.classList = "hidden";
   lose.classList = "hidden";
 
-  rock.addEventListener("click", shakeHandsRock);
-  paper.addEventListener("click", shakeHandsPaper);
-  scissors.addEventListener("click", shakeHandsScissors);
+  rock.addEventListener("click", titleScreen);
+  paper.addEventListener("click", titleScreen);
+  scissors.addEventListener("click", titleScreen);
 }
 
 // winScreen
@@ -210,9 +214,9 @@ function winScreen() {
   tie.classList = "hidden";
   lose.classList = "hidden";
 
-  rock.addEventListener("click", shakeHandsRock);
-  paper.addEventListener("click", shakeHandsPaper);
-  scissors.addEventListener("click", shakeHandsScissors);
+  rock.addEventListener("click", titleScreen);
+  paper.addEventListener("click", titleScreen);
+  scissors.addEventListener("click", titleScreen);
 }
 // loseScreen
 function loseScreen() {
@@ -223,7 +227,7 @@ function loseScreen() {
   win.classList = "hidden";
   tie.classList = "hidden";
 
-  rock.addEventListener("click", shakeHandsRock);
-  paper.addEventListener("click", shakeHandsPaper);
-  scissors.addEventListener("click", shakeHandsScissors);
+  rock.addEventListener("click", titleScreen);
+  paper.addEventListener("click", titleScreen);
+  scissors.addEventListener("click", titleScreen);
 }
