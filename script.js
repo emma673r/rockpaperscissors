@@ -12,8 +12,8 @@ const paper = document.querySelector(`.paper`);
 const scissors = document.querySelector(`.scissors`);
 
 //rock = 0, paper = 1, scissors = 2
-let compChoice = Math.floor(Math.random() * 3);
-console.log(`compChoice is : ${compChoice}`);
+let compChoice;
+compChoice = Math.floor(Math.random() * 3);
 
 //rock = 0, paper = 1, scissors = 2
 let userChoice;
@@ -24,21 +24,63 @@ window.addEventListener("DOMContentLoaded", titleScreen);
 // titleScreen
 function titleScreen() {
   console.log(`titleScreen`);
+
+  tie.classList = "hidden";
+  win.classList = "hidden";
+  lose.classList = "hidden";
+
+  player.offsetLeft;
+
+  compChoice = Math.floor(Math.random() * 3);
+  console.log(`compChoice is : ${compChoice}`);
+
   // event listener rock btn click startGame
-  rock.addEventListener("click", rockClicked);
+  rock.addEventListener("click", shakeHandsRock);
   // event listener paper btn click startGame
-  paper.addEventListener("click", paperClicked);
+  paper.addEventListener("click", shakeHandsPaper);
   // event listener scissors btn click startGame
-  scissors.addEventListener("click", scissorsClicked);
+  scissors.addEventListener("click", shakeHandsScissors);
+}
+
+function shakeHandsRock() {
+  console.log(`shakeHandsRock`);
+  player.classList.add("rock");
+  computer.classList.add("rock");
+  player.classList.add("shake");
+  computer.classList.add("shake");
+  player.addEventListener("animationend", rockClicked);
+}
+
+function shakeHandsPaper() {
+  console.log(`shakeHandsPaper`);
+  //   player.classList.add("rock");
+  //   computer.classList.add("rock");
+  player.classList.add("shake");
+  computer.classList.add("shake");
+  player.addEventListener("animationend", paperClicked);
+}
+
+function shakeHandsScissors() {
+  console.log(`shakeHandsScissors`);
+  player.classList.add("scissors");
+  computer.classList.add("rock");
+  player.classList.add("shake");
+  computer.classList.add("shake");
+  player.addEventListener("animationend", scissorsClicked);
 }
 
 function rockClicked() {
+  console.log(`rockClicked`);
   userChoice = 0;
 
   player.classList.add("rock");
+  computer.classList = "player";
+  player.classList.remove("shake");
+  computer.classList.remove("shake");
   //   rock vs rock = tie
   if (userChoice == compChoice) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`rock`);
     tieScreen();
@@ -46,6 +88,7 @@ function rockClicked() {
   //   rock vs paper = player lose
   else if (compChoice == 1) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`paper`);
     loseScreen();
@@ -53,6 +96,7 @@ function rockClicked() {
   //   rock vs scissors = player win
   else if (compChoice == 2) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`scissors`);
     winScreen();
@@ -60,19 +104,26 @@ function rockClicked() {
 }
 
 function paperClicked() {
+  console.log(`paperClicked`);
   userChoice = 1;
-  player.classList.add(`paper`);
+
+  player.classList.add("paper");
+  computer.classList = "player";
+  player.classList.remove("shake");
+  computer.classList.remove("shake");
 
   //   paper vs rock = win
-  if (userChoice == 0) {
+  if (compChoice == 0) {
     // shake animation
+
     // show hands pngs
-    computer.classList.add(`rock`);
+    computer.classList.add("rock");
     winScreen();
   }
   //   paper vs paper = tie
   else if (compChoice == userChoice) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`paper`);
     tieScreen();
@@ -80,6 +131,7 @@ function paperClicked() {
   //   paper vs scissors = lose
   else if (compChoice == 2) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`scissors`);
     loseScreen();
@@ -87,12 +139,16 @@ function paperClicked() {
 }
 
 function scissorsClicked() {
+  console.log(`scissorsClicked`);
   userChoice = 2;
+
   player.classList.add("scissors");
+  computer.classList = "player";
+  player.classList.remove("shake");
+  computer.classList.remove("shake");
 
   //   scissors vs rock = lose
-  if (userChoice == 0) {
-    // shake animation
+  if (compChoice == 0) {
     // show hands pngs
     computer.classList.add(`rock`);
     loseScreen();
@@ -100,6 +156,7 @@ function scissorsClicked() {
   //   scissors vs paper = win
   else if (compChoice == 1) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`paper`);
     winScreen();
@@ -107,10 +164,49 @@ function scissorsClicked() {
   //   scissors vs scissors = tie
   else if (compChoice == userChoice) {
     // shake animation
+
     // show hands pngs
     computer.classList.add(`scissors`);
     tieScreen();
   }
+}
+
+// tieScreen
+function tieScreen() {
+  console.log(`tieScreen`);
+
+  // display block tie div
+  tie.classList = "";
+  win.classList = "hidden";
+  lose.classList = "hidden";
+  rock.addEventListener("click", titleScreen);
+  paper.addEventListener("click", titleScreen);
+  scissors.addEventListener("click", titleScreen);
+}
+
+// winScreen
+function winScreen() {
+  console.log(`winScreen`);
+
+  // display block win div
+  win.classList = "";
+  tie.classList = "hidden";
+  lose.classList = "hidden";
+  rock.addEventListener("click", titleScreen);
+  paper.addEventListener("click", titleScreen);
+  scissors.addEventListener("click", titleScreen);
+}
+// loseScreen
+function loseScreen() {
+  console.log(`loseScreen`);
+
+  // display block lose screen
+  lose.classList = "";
+  win.classList = "hidden";
+  tie.classList = "hidden";
+  rock.addEventListener("click", titleScreen);
+  paper.addEventListener("click", titleScreen);
+  scissors.addEventListener("click", titleScreen);
 }
 
 // // startGame
@@ -163,26 +259,3 @@ function scissorsClicked() {
 
 //   // else player one no click -- startGame
 // }
-
-// tieScreen
-function tieScreen() {
-  console.log(`tieScreen`);
-
-  // display block tie div
-  tie.classList.remove("hidden");
-}
-
-// winScreen
-function winScreen() {
-  console.log(`winScreen`);
-
-  // display block win div
-  win.classList.remove("hidden");
-}
-// loseScreen
-function loseScreen() {
-  console.log(`loseScreen`);
-
-  // display block lose screen
-  lose.classList.remove("hidden");
-}
