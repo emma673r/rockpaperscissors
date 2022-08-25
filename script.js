@@ -29,7 +29,9 @@ function titleScreen() {
   win.classList = "hidden";
   lose.classList = "hidden";
 
-  player.offsetLeft;
+  //   player.classList.remove("rock");
+  //   player.classList.remove("paper");
+  //   player.classList.remove("scissors");
 
   compChoice = Math.floor(Math.random() * 3);
   console.log(`compChoice is : ${compChoice}`);
@@ -44,8 +46,9 @@ function titleScreen() {
 
 function shakeHandsRock() {
   console.log(`shakeHandsRock`);
-  player.classList.add("rock");
-  computer.classList.add("rock");
+
+  //   player.classList.add("rock");
+  //   computer.classList.add("rock");
   player.classList.add("shake");
   computer.classList.add("shake");
   player.addEventListener("animationend", rockClicked);
@@ -53,7 +56,8 @@ function shakeHandsRock() {
 
 function shakeHandsPaper() {
   console.log(`shakeHandsPaper`);
-  //   player.classList.add("rock");
+
+  //   player.classList.add("paper");
   //   computer.classList.add("rock");
   player.classList.add("shake");
   computer.classList.add("shake");
@@ -62,8 +66,9 @@ function shakeHandsPaper() {
 
 function shakeHandsScissors() {
   console.log(`shakeHandsScissors`);
-  player.classList.add("scissors");
-  computer.classList.add("rock");
+
+  //   player.classList.add("scissors");
+  //   computer.classList.add("rock");
   player.classList.add("shake");
   computer.classList.add("shake");
   player.addEventListener("animationend", scissorsClicked);
@@ -73,7 +78,7 @@ function rockClicked() {
   console.log(`rockClicked`);
   userChoice = 0;
 
-  player.classList.add("rock");
+  player.classList = "player";
   computer.classList = "player";
   player.classList.remove("shake");
   computer.classList.remove("shake");
@@ -83,6 +88,7 @@ function rockClicked() {
 
     // show hands pngs
     computer.classList.add(`rock`);
+    player.classList.add(`rock`);
     tieScreen();
   }
   //   rock vs paper = player lose
@@ -91,6 +97,7 @@ function rockClicked() {
 
     // show hands pngs
     computer.classList.add(`paper`);
+    player.classList.add(`rock`);
     loseScreen();
   }
   //   rock vs scissors = player win
@@ -99,6 +106,7 @@ function rockClicked() {
 
     // show hands pngs
     computer.classList.add(`scissors`);
+    player.classList.add(`rock`);
     winScreen();
   }
 }
@@ -107,7 +115,7 @@ function paperClicked() {
   console.log(`paperClicked`);
   userChoice = 1;
 
-  player.classList.add("paper");
+  player.classList = "player";
   computer.classList = "player";
   player.classList.remove("shake");
   computer.classList.remove("shake");
@@ -118,6 +126,7 @@ function paperClicked() {
 
     // show hands pngs
     computer.classList.add("rock");
+    player.classList.add(`paper`);
     winScreen();
   }
   //   paper vs paper = tie
@@ -126,6 +135,7 @@ function paperClicked() {
 
     // show hands pngs
     computer.classList.add(`paper`);
+    player.classList.add(`paper`);
     tieScreen();
   }
   //   paper vs scissors = lose
@@ -134,6 +144,7 @@ function paperClicked() {
 
     // show hands pngs
     computer.classList.add(`scissors`);
+    player.classList.add(`paper`);
     loseScreen();
   }
 }
@@ -142,7 +153,7 @@ function scissorsClicked() {
   console.log(`scissorsClicked`);
   userChoice = 2;
 
-  player.classList.add("scissors");
+  player.classList = "player";
   computer.classList = "player";
   player.classList.remove("shake");
   computer.classList.remove("shake");
@@ -151,6 +162,7 @@ function scissorsClicked() {
   if (compChoice == 0) {
     // show hands pngs
     computer.classList.add(`rock`);
+    player.classList.add(`scissors`);
     loseScreen();
   }
   //   scissors vs paper = win
@@ -159,6 +171,7 @@ function scissorsClicked() {
 
     // show hands pngs
     computer.classList.add(`paper`);
+    player.classList.add(`scissors`);
     winScreen();
   }
   //   scissors vs scissors = tie
@@ -167,6 +180,7 @@ function scissorsClicked() {
 
     // show hands pngs
     computer.classList.add(`scissors`);
+    player.classList.add(`scissors`);
     tieScreen();
   }
 }
@@ -179,6 +193,7 @@ function tieScreen() {
   tie.classList = "";
   win.classList = "hidden";
   lose.classList = "hidden";
+
   rock.addEventListener("click", titleScreen);
   paper.addEventListener("click", titleScreen);
   scissors.addEventListener("click", titleScreen);
@@ -192,6 +207,7 @@ function winScreen() {
   win.classList = "";
   tie.classList = "hidden";
   lose.classList = "hidden";
+
   rock.addEventListener("click", titleScreen);
   paper.addEventListener("click", titleScreen);
   scissors.addEventListener("click", titleScreen);
@@ -204,58 +220,8 @@ function loseScreen() {
   lose.classList = "";
   win.classList = "hidden";
   tie.classList = "hidden";
-  rock.addEventListener("click", titleScreen);
-  paper.addEventListener("click", titleScreen);
-  scissors.addEventListener("click", titleScreen);
+
+  rock.addEventListener("click", shakeHandsRock);
+  paper.addEventListener("click", shakeHandsPaper);
+  scissors.addEventListener("click", shakeHandsScissors);
 }
-
-// // startGame
-// function startGame(event) {
-//   console.log(`startGame`);
-//   // player two (computer) randomize choice between 0, 1 and 2 (rock, paper or scissors)
-//   compChoice;
-
-//   // if payer one click rock && player two click rock == tie
-//   if (player.click.rock && compChoice = compRock) {
-
-//   }
-//   // player one and player two animation shake
-//   //   player one show rock png and player two show rock png
-//   // tieScreen
-//   // else if payer one click rock && player two click paper == player one lose
-//   // player one and player two animation shake
-//   //   player one show rock png and player two show paper png
-//   // loseScreen
-//   // else if payer one click rock && player two click scissors == player one win
-//   // player one and player two animation shake
-//   //   player one show rock png and player two show scissors png
-//   // winScreen
-
-//   // else if player one click paper && palyer two click rock == player one win
-//   // player one and player two animation shake
-//   //   player one show paper png and player two show rock png
-//   // winScreen
-//   // else if player one click paper && palyer two click paper == tie
-//   // player one and player two animation shake
-//   //   player one show paper png and player two show paper png
-//   // tieScreen
-//   // else if player one click paper && palyer two click scissors == player one lose
-//   // player one and player two animation shake
-//   //   player one show aper png and player two show scissors png
-//   // loseScreen
-
-//   // else if player one click scissors && player two click rock == player one lose
-//   // player one and player two animation shake
-//   // loseScreen
-//   //   player one show scissors png and player two show rock png
-//   // else if player one click scissors && player two click paper == player one win
-//   // player one and player two animation shake
-//   //   player one show scissors png and player two show paper png
-//   // winScreen
-//   // else if player one click scissors && player two click scissors == tie
-//   // player one and player two animation shake
-//   //   player one show scissors png and player two show scissors png
-//   // tieScreen
-
-//   // else player one no click -- startGame
-// }
