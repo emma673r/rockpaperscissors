@@ -29,12 +29,8 @@ function titleScreen() {
   win.classList = "hidden";
   lose.classList = "hidden";
 
-  //   player.classList.remove("rock");
-  //   player.classList.remove("paper");
-  //   player.classList.remove("scissors");
-
-  compChoice = Math.floor(Math.random() * 3);
-  console.log(`compChoice is : ${compChoice}`);
+//   compChoice = Math.floor(Math.random() * 3);
+//   console.log(`compChoice is : ${compChoice}`);
 
   // event listener rock btn click startGame
   rock.addEventListener("click", shakeHandsRock);
@@ -47,8 +43,9 @@ function titleScreen() {
 function shakeHandsRock() {
   console.log(`shakeHandsRock`);
 
-  //   player.classList.add("rock");
-  //   computer.classList.add("rock");
+    compChoice = Math.floor(Math.random() * 3);
+    console.log(`compChoice is : ${compChoice}`);
+
   player.classList.add("shake");
   computer.classList.add("shake");
   player.addEventListener("animationend", rockClicked);
@@ -57,8 +54,9 @@ function shakeHandsRock() {
 function shakeHandsPaper() {
   console.log(`shakeHandsPaper`);
 
-  //   player.classList.add("paper");
-  //   computer.classList.add("rock");
+    compChoice = Math.floor(Math.random() * 3);
+    console.log(`compChoice is : ${compChoice}`);
+
   player.classList.add("shake");
   computer.classList.add("shake");
   player.addEventListener("animationend", paperClicked);
@@ -67,8 +65,9 @@ function shakeHandsPaper() {
 function shakeHandsScissors() {
   console.log(`shakeHandsScissors`);
 
-  //   player.classList.add("scissors");
-  //   computer.classList.add("rock");
+    compChoice = Math.floor(Math.random() * 3);
+  console.log(`compChoice is : ${compChoice}`);
+
   player.classList.add("shake");
   computer.classList.add("shake");
   player.addEventListener("animationend", scissorsClicked);
@@ -78,8 +77,9 @@ function rockClicked() {
   console.log(`rockClicked`);
   userChoice = 0;
 
-  player.classList = "player";
+  player.classList = "player rock";
   computer.classList = "player";
+
   player.classList.remove("shake");
   computer.classList.remove("shake");
   //   rock vs rock = tie
@@ -88,7 +88,7 @@ function rockClicked() {
 
     // show hands pngs
     computer.classList.add(`rock`);
-    player.classList.add(`rock`);
+
     tieScreen();
   }
   //   rock vs paper = player lose
@@ -97,7 +97,7 @@ function rockClicked() {
 
     // show hands pngs
     computer.classList.add(`paper`);
-    player.classList.add(`rock`);
+
     loseScreen();
   }
   //   rock vs scissors = player win
@@ -106,7 +106,7 @@ function rockClicked() {
 
     // show hands pngs
     computer.classList.add(`scissors`);
-    player.classList.add(`rock`);
+
     winScreen();
   }
 }
@@ -115,8 +115,9 @@ function paperClicked() {
   console.log(`paperClicked`);
   userChoice = 1;
 
-  player.classList = "player";
+  player.classList = "player paper";
   computer.classList = "player";
+
   player.classList.remove("shake");
   computer.classList.remove("shake");
 
@@ -126,7 +127,7 @@ function paperClicked() {
 
     // show hands pngs
     computer.classList.add("rock");
-    player.classList.add(`paper`);
+
     winScreen();
   }
   //   paper vs paper = tie
@@ -135,7 +136,7 @@ function paperClicked() {
 
     // show hands pngs
     computer.classList.add(`paper`);
-    player.classList.add(`paper`);
+
     tieScreen();
   }
   //   paper vs scissors = lose
@@ -144,7 +145,7 @@ function paperClicked() {
 
     // show hands pngs
     computer.classList.add(`scissors`);
-    player.classList.add(`paper`);
+
     loseScreen();
   }
 }
@@ -153,8 +154,9 @@ function scissorsClicked() {
   console.log(`scissorsClicked`);
   userChoice = 2;
 
-  player.classList = "player";
+  player.classList = "player scissors";
   computer.classList = "player";
+
   player.classList.remove("shake");
   computer.classList.remove("shake");
 
@@ -162,7 +164,7 @@ function scissorsClicked() {
   if (compChoice == 0) {
     // show hands pngs
     computer.classList.add(`rock`);
-    player.classList.add(`scissors`);
+
     loseScreen();
   }
   //   scissors vs paper = win
@@ -171,7 +173,7 @@ function scissorsClicked() {
 
     // show hands pngs
     computer.classList.add(`paper`);
-    player.classList.add(`scissors`);
+
     winScreen();
   }
   //   scissors vs scissors = tie
@@ -180,7 +182,7 @@ function scissorsClicked() {
 
     // show hands pngs
     computer.classList.add(`scissors`);
-    player.classList.add(`scissors`);
+
     tieScreen();
   }
 }
@@ -194,9 +196,9 @@ function tieScreen() {
   win.classList = "hidden";
   lose.classList = "hidden";
 
-  rock.addEventListener("click", titleScreen);
-  paper.addEventListener("click", titleScreen);
-  scissors.addEventListener("click", titleScreen);
+  rock.addEventListener("click", shakeHandsRock);
+  paper.addEventListener("click", shakeHandsPaper);
+  scissors.addEventListener("click", shakeHandsScissors);
 }
 
 // winScreen
@@ -208,9 +210,9 @@ function winScreen() {
   tie.classList = "hidden";
   lose.classList = "hidden";
 
-  rock.addEventListener("click", titleScreen);
-  paper.addEventListener("click", titleScreen);
-  scissors.addEventListener("click", titleScreen);
+  rock.addEventListener("click", shakeHandsRock);
+  paper.addEventListener("click", shakeHandsPaper);
+  scissors.addEventListener("click", shakeHandsScissors);
 }
 // loseScreen
 function loseScreen() {
